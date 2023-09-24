@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <div id="chatbox">
+        <p class="botText"><span>Hi! i'am Chatbot</span></p>
+      </div>
+      <div id="userInput">
+        <input type="text" class="textInput" name="msg" placeholder="Message" />
+        <input type="submit" class="buttonInput" value="Send" />
+      </div>
+      <script>
+        function getBotResponse() {
+          var rawText = $("#textInput").val();
+          var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+          "#textInput".val("");
+          $("#chatbox").append(userHtml);
+          document.getElementById("userInput").scrollIntoView({
+            block: "start",
+            behavior: "smooth",
+          });
+          $.get("/get", { msg: rawText }).done(function (data) {
+            var botHtml = '<p class="botText"><span>' + data + "</span></p>";
+            $("#chatbox").append(botHtml);
+            document.getElementById("userInput").scrollIntoView({
+              block: "start",
+              behavior: "smooth",
+            });
+          });
+        }
+
+        $("#textInput").keypress(function (e) {
+          if (e.which == 13) {
+            getBotResponse();
+          }
+        });
+        $("#buttonInput").click(function () {
+          getBotResponse();
+        });
+      </script>
+    </div>
+  </body>
+</html>

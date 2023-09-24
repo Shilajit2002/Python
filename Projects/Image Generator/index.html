@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Style Transfer Example</title>
+  </head>
+  <body>
+    <h1>Style Transfer Example</h1>
+    <input type="file" id="inputImage" accept="image/*" />
+    <button onclick="applyStyle()">Apply Style</button>
+    <div>
+      <h2>Original Image</h2>
+      <img id="originalImage" style="max-width: 400px" />
+    </div>
+    <div>
+      <h2>Styled Image</h2>
+      <img id="styledImage" style="max-width: 400px" />
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/ml5@0.5.0/dist/ml5.min.js"></script>
+
+    <script>
+      async function applyStyle() {
+        const inputImage = document.getElementById("inputImage");
+        const originalImage = document.getElementById("originalImage");
+        const styledImage = document.getElementById("styledImage");
+
+        if (inputImage.files.length === 0) {
+          alert("Please select an image.");
+          return;
+        }
+
+        const image = await loadImage(inputImage.files[0]);
+        originalImage.src = image.src;
+
+        const styleTransferModel = await ml5.styleTransfer(
+          "models/style-transfer-model",
+          modelLoaded
+        );
+
+        function modelLoaded() {
+          console.log("Style transfer model loaded.");
+          styleTransferModel.transfer(image, (err, result) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            styledImage.src = result.src;
+          });
+        }
+      }
+
+      async function loadImage(file) {
+        return new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            const image = new Image();
+            image.src = event.target.result;
+            image.onload = () => resolve(image);
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,272 @@
+In Python, create transaction code using below info:
+
+Transactions
+
+For each menu option, your program should perform a different transaction as follows:
+
+Open an account
+For open account, the program should prompt the user to enter their first and last name and their social security number:
+
+OPEN ACCOUNT
+
+Enter Account Owner's First Name:
+
+George
+
+Enter Account Owner's Last Name:
+
+Washington
+
+Enter Account Owner's SSN (9 digits):
+
+999741776
+
+Once the above information is entered, a new Account object should be created, and the six fields of the Account object should be populated using the setter methods based on the criteria defined above under the Account class. Any special logic (i.e. to generate a random number) should happen BEFORE calling the setter. Once the account is initialized, the toString() method on the account should be involved to print out the Account fields as follows:
+
+============================================================
+
+Account Number: 75927164
+
+Owner First Name: George
+
+Owner Last Name: Washington
+
+Owner SSN: XXX-XX-1776
+
+PIN: 3198
+
+Balance: $0.00
+
+============================================================
+
+The program must check if an account already exists with that account number. If so, it must loop and try a different 8-digit account number until it finds a number that does not already exist as an account. It must then add this account to the array of accounts in the Bank so that Bank can keep track of it.
+
+Then the program returns to the main menu.
+
+Get account information and balance
+For ‘Get account information and balance’, the program should prompt the user to enter their account number and then the PIN for the account number. See the error messages section for the messages to display if the account number or PIN are invalid. If the account number is valid and the PIN matches the PIN on the account, the program should print the account information and balance formatted as shown below with the dollar sign and cents after the decimal.
+
+Enter account number:
+
+75927164
+
+Enter PIN:
+
+3198
+
+============================================================
+
+Account Number: 75927164
+
+Owner First Name: George
+
+Owner Last Name: Washington
+
+Owner SSN: XXX-XX-1776
+
+PIN: 3198
+
+Balance: $0.00
+
+============================================================
+
+Then the program returns to the main menu.
+
+Change PIN
+For ‘Change PIN’, the program should prompt the user to enter their account number and then the PIN for the account number. See the error messages section for the messages to display if the account number or PIN are invalid. If the account number is valid and the PIN matches the PIN on the account, the program should prompt the user to enter a new PIN number twice as show below. If the PIN numbers match, the PIN should be updated in the account and the “PIN updated” message should be displayed.
+
+Enter account number:
+
+95705452
+
+Enter PIN:
+
+3958
+
+Enter new PIN:
+
+1776
+
+Enter new PIN again to confirm:
+
+1776
+
+PIN updated
+
+Then the program returns to the main menu.
+
+Deposit money into account
+For ‘Deposit money into account’, the program should prompt the user to enter their account number and then the PIN for the account number. See the error messages section for the messages to display if the account number or PIN are invalid. If the account number is valid and the PIN matches the PIN on the account, the program should prompt the user to enter the dollars and cents to deposit as a decimal as shown below. If the amount is less than or equal to 0, print a message that says “Amount cannot be negative. Try again.” Otherwise, convert the amount entered to a long and call the deposit method on the Account. Then the program should print the updated balance of the account.
+
+Enter account number:
+
+37658351
+
+Enter PIN:
+
+4444
+
+Enter amount to deposit in dollars and cents (e.g. 2.57):
+
+5.25
+
+New balance:$5.25
+
+Then the program returns to the main menu.
+
+Transfer money between accounts
+For ‘Transfer money between accounts’, the program should prompt the user to enter their account number and then the PIN for the account number to transfer from and then the account number and PIN of the account to transfer to. See the error messages section for the messages to display if the account number or PIN are invalid. If the account numbers are valid and the PINs match the PINs on the accounts, the program should prompt the user to enter the dollars and cents to transfer as a decimal as shown below. If the amount is less than or equal to 0, print a message that says “Amount cannot be negative. Try again.” Otherwise, convert the amount entered to a long and call the withdraw method on the “from” Account and then the deposit method on the “to” Account. Then the program should print the updated balances of both accounts.
+
+Account to Transfer From:
+
+Enter account number:
+
+37658351
+
+Enter PIN:
+
+4444
+
+Account to Transfer To:
+
+Enter account number:
+
+36279555
+
+Enter PIN:
+
+8571
+
+Enter amount to transfer in dollars and cents (e.g. 2.57):
+
+2.50
+
+Transfer Complete
+
+New balance in account:37658351 is:$2.75
+
+New balance in account:36279555 is:$2.50
+
+Then the program returns to the main menu.
+
+Withdraw money from an account
+For ‘Withdraw money from account’, the program should prompt the user to enter their account number and then the PIN for the account number. See the error messages section for the messages to display if the account number or PIN are invalid. If the account number is valid and the PIN matches the PIN on the account, the program should prompt the user to enter the dollars and cents to withdraw as a decimal as shown below. If the amount is less than or equal to 0, print a message that says “Amount cannot be negative. Try again.” Otherwise, convert the amount entered to a long and call the withdraw method on the Account. Then the program should print the updated balance of the account.
+
+Enter account number:
+
+35816930
+
+Enter PIN:
+
+2010
+
+Enter amount to Deposit in dollars and cents (e.g. 2.57):
+
+123.45
+
+New balance:$123.45
+
+Then the program returns to the main menu.
+
+Make an ATM withdrawal from an account
+For ‘Make an ATM withdrawal from an account’, the program should prompt the user to enter their account number and then the PIN for the account number. See the error messages section for the messages to display if the account number or PIN are invalid. If the account number is valid and the PIN matches the PIN on the account, the program should prompt the user to enter the amount to withdraw in whole dollars as a multiple of $5 as shown below.
+
+If the amount is less than 5, greater than 1000, or not divisible by 5, print a message that says “Invalid amount. Try again.”
+
+Otherwise, calculate the number of $20 bills, $10 bills and $5 required to equal the amount withdrawn, print the amounts on the screen and then call the withdraw method on the Account.
+
+Then the program should print the updated balance of the account.
+
+Enter account number:
+
+37658351
+
+Enter PIN:
+
+4444
+
+Enter amount to withdraw in dollars (no cents) in multiples of $5 (limit $1000):
+
+135
+
+Number of 20-dollar bills:6
+
+Number of 10-dollar bills:1
+
+Number of 5-dollar bills:1
+
+New balance: $367.75
+
+Deposit change into an account
+For ‘Deposit change’, the program should prompt the user to enter their account number and then the PIN for the account number. See the error messages section for the messages to display if the account number or PIN are invalid. If the account number is valid and the PIN matches the PIN on the account, the program should prompt the user to enter a String representing a set of coins as shown below.
+
+‘P’ represents a penny (1 cent)
+‘N’ represents a nickel (5 cents)
+‘D’ represents a dime (10 cents)
+‘Q’ represents a quarter (25 cents)
+‘H’ represents a half-dollar (50 cents)
+‘W’ represents a whole dollar (100 cents)
+If any characters are invalid coins (e.g. X), the program should print “Invalid coin: X”. Otherwise, convert the String into the appropriate number of cents to a long and call the deposit method on the Account. Then the program should print the updated balance of the account.
+
+Enter account number:
+
+47322673
+
+Enter PIN:
+
+4919
+
+Deposit coins:
+
+QPDNNDXHW
+
+Invalid coin: X
+
+$2.06 in coins deposited into account
+
+New balance: $2.06
+
+In the above example, there are the following:
+
+1 quarter (Q) + 2 dimes (D) + 2 nickels (N) + 1 half-dollar (H) + 1 dollar (W) + 1 penny (P) = 2.06
+
+The ‘X’ is an invalid coin and is not counted.
+
+Then the program returns to the main menu.
+
+Close an account
+For ‘Close an account’ the program should prompt the user to enter their account number and then the PIN for the account number. See the error messages section for the messages to display if the account number or PIN are invalid. If the account number is valid and the PIN matches the PIN on the account, the program should look through all of the Account objects in the Bank. If a matching Account is found, the Bank should remove that Account from its set of accounts by setting it to null
+
+Enter account number:
+
+47322673
+
+Enter PIN:
+
+4919
+
+Account 47322673 closed
+
+If the user tries to find the account afterwards, it should not be found:
+
+Enter account number:
+
+47322673
+
+Account not found for account number: 47322673
+
+Add monthly interest to all accounts
+For ‘Add monthly interest to all accounts’, the program should prompt the user to enter an annual interest rate. The program should then calculate a monthly interest payment based on the annual interest rate for each account based on its current balance and then deposit that amount into that account.
+
+In the example below, the first account had an original balance of $500, the second account had an original balance of $2500.
+
+Enter annual interest rate percentage (e.g. 2.75 for 2.75%):
+
+1.25
+
+Deposited interest:$0.52 into account number:47534813, new balance:$500.52
+
+Deposited interest:$2.60 into account number:36069443, new balance:$2,502.60
+
+End Program
+If the enters 11, the program should exit the loop and end the program.

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Speech Recognition and Voice Synthesis</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #output {
+        text-align: center;
+        font-size: 18px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Speech Recognition and Voice Synthesis</h1>
+    <button id="startButton">Start Listening</button>
+    <button id="speakButton">Speak</button>
+    <div id="output"></div>
+
+    <script>
+      const startButton = document.getElementById("startButton");
+      const speakButton = document.getElementById("speakButton");
+      const outputDiv = document.getElementById("output");
+
+      const recognition = new webkitSpeechRecognition(); // Use "webkitSpeechRecognition" in Chrome
+      recognition.lang = "en-US";
+      recognition.interimResults = true; // Enable interim results
+
+      recognition.onresult = (event) => {
+        let transcript = "";
+        for (const result of event.results) {
+          transcript += result[0].transcript;
+        }
+        outputDiv.textContent = `You are saying: ${transcript}`;
+      };
+
+      recognition.onstart = () => {
+        outputDiv.textContent = "Listening...";
+      };
+
+      recognition.onend = () => {
+        startButton.disabled = false;
+        startButton.textContent = "Start Listening";
+        const message = outputDiv.textContent.replace("You said: ", "");
+        speak(message);
+      };
+
+      startButton.addEventListener("click", () => {
+        recognition.start();
+        startButton.disabled = true;
+        startButton.textContent = "Listening...";
+      });
+
+      // Speech Synthesis
+      speakButton.addEventListener("click", () => {
+        const message = outputDiv.textContent.replace("You said: ", "");
+        speak(message);
+      });
+
+      function speak(text) {
+        const synth = window.speechSynthesis;
+        const utterance = new SpeechSynthesisUtterance(text);
+        synth.speak(utterance);
+      }
+    </script>
+  </body>
+</html>
